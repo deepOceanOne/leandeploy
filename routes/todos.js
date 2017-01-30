@@ -33,7 +33,10 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var content = req.body.content;
   var todo = new Todo();
-  todo.set('content', content);
+  var sites = ['www.baidu.com/s?ie=utf-8&wd=','http://weixin.sogou.com/weixin?type=2&query='];
+  for (site in sites){
+  	todo.set('content', sites+content);
+  }
   todo.save().then(function(todo) {
     res.redirect('/todos');
   }).catch(next);
